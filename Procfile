@@ -1,1 +1,1 @@
-web: java -jar target/thmmyrss-0.0.1-SNAPSHOT.jar server thmmyrss.yml
+web: java -jar target/thmmyrss-*.jar server thmmyrss.yml
