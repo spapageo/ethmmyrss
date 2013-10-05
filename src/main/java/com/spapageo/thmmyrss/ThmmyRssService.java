@@ -78,13 +78,12 @@ public class ThmmyRssService extends Service<ThmmyRssConfiguration> {
 	    }catch(Exception e){
 	    	LoggerFactory.getLogger(getClass()).warn("Table probably already exists. Trying to continue",e);
 	    }
-	    
+	    this.fetcher = new Fetcher(client,config,dao);
 	    if(config.getStandalone()){
 		    final ScheduledExecutorService exec = env.managedScheduledExecutorService("Ethmmy Parser Executor Service 1", 2);
-		    this.fetcher = new Fetcher(client,config,dao);
 		    exec.scheduleWithFixedDelay(fetcher, 0 , 30, TimeUnit.MINUTES);
-		    env.addHealthCheck(new FetcherHealthCheck(config, fetcher));
 	    }
+	    env.addHealthCheck(new FetcherHealthCheck(config, fetcher));
 	    env.addResource(new FeedResource(dao,config));
 	}
 
