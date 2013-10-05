@@ -10,7 +10,7 @@ http:
 database:
   driverClass: com.postgresql.Driver
   #jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
-  url: null
+  url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
   user: spyros
 
 httpClient:

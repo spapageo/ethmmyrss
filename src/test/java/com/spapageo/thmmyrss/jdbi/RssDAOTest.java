@@ -17,11 +17,14 @@ import com.spapageo.thmmyrss.api.Item;
 public class RssDAOTest {
 
 	private RssDAO dao;
-	DBI dbi = new DBI("jdbc:h2:mem:test;MVCC=TRUE");
-	Handle h = dbi.open();
+	DBI dbi;
+	Handle h;
 	
 	@Before
 	public void setUp() throws Exception {
+		//Class.forName("com.h2database.Driver");
+		dbi = new DBI("jdbc:h2:mem:test;MVCC=TRUE");
+		h = dbi.open();
 		this.dao = h.attach(RssDAO.class);
 	}
 
