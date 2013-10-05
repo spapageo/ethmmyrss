@@ -8,7 +8,7 @@ http:
   adminPassword: null
 
 database:
-  driverClass: com.postgresql.Driver
+  driverClass: org.postgresql.Driver
   #jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
   url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
   user: spyros
