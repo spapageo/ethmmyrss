@@ -21,24 +21,24 @@ import com.spapageo.thmmyrss.api.Item;
 @RegisterMapper(ItemMapper.class)
 public interface RssDAO {
 	
-	@SqlBatch("merge into items (hash,title,date,description,lessonId) values (:hash,:title,:date,:description,:lessonId)")
+	@SqlBatch("merge into \"items\" (hash,title,date,description,lessonId) values (:hash,:title,:date,:description,:lessonId)")
 	int[] insertItems(@BindBean List<Item> items);
 
-	@SqlUpdate("insert into items (hash,title,date,description,lessonId) values (:hash,:title,:date,:description,:lessonId)")
+	@SqlUpdate("insert into \"items\" (hash,title,date,description,lessonId) values (:hash,:title,:date,:description,:lessonId)")
 	int insertItem(@BindBean Item item);
 	
-	@SqlUpdate("create table items (hash varchar(64) primary key,title varchar(1024),date varchar(32),description varchar(max), lessonId int)")
+	@SqlUpdate("create table \"items\" (hash varchar(64) primary key,title varchar(1024),date varchar(32),description varchar(max), lessonId int)")
 	void createItemsTable();
 	
-	@SqlQuery("select hash,title,date,description,lessonId from items where lessonId = :lessonId limit 10")
+	@SqlQuery("select hash,title,date,description,lessonId from \"items\" where lessonId = :lessonId limit 10")
 	List<Item> getItemsForId(@Bind("lessonId") int lessonId);
 	
-	@SqlQuery("select count(*) from items")
+	@SqlQuery("select count(*) from \"items\"")
 	int getItemCount();
 	
-	@SqlQuery("select count(*) from items where lessonId = :lessonId")
+	@SqlQuery("select count(*) from \"items\" where lessonId = :lessonId")
 	int getItemCountForId(@Bind("lessonId") int lessonId);
 	
-	@SqlUpdate("delete from items where hash not in (select hash from items where lessonId = :lessonId limit :x)")
+	@SqlUpdate("delete from \"items\" where hash not in (select hash from items where lessonId = :lessonId limit :x)")
 	void deleteAllbutFirstXForId(@Bind("lessonId") int lessonId,@Bind("x") int x);
 }
