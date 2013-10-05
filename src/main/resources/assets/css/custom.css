@@ -1,0 +1,42 @@
+.jumbotron {
+  padding: 15px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 1.428;
+  color: inherit;
+  background-color: #eeeeee;
+}
+
+.jumbotron h1 {
+  line-height: 1.428;
+  color: inherit;
+}
+
+.jumbotron p {
+  line-height: 1.428;
+}
+
+.container .jumbotron {
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .container .jumbotron {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .jumbotron h1 {
+    font-size: 63px;
+  }
+}
+
+.page-footer {
+  padding-top: 9px;
+  margin: 20px 0 40px;
+  border-top: 1px solid #eeeeee;
+}
