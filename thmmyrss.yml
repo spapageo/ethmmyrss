@@ -1,4 +1,4 @@
-standalone: true
+standalone: false
 
 http:
   rootPath: /service/*
@@ -8,7 +8,7 @@ http:
   adminPassword: null
 
 database:
-  driverClass: com.mysql.jdbc.Driver
+  driverClass: com.postgresql.Driver
   #jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
   url: null
   user: spyros

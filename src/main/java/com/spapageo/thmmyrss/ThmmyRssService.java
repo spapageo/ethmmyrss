@@ -41,11 +41,11 @@ public class ThmmyRssService extends Service<ThmmyRssConfiguration> {
 	public static void main(String[] args) throws Exception{
 	    
 		//check if we are running on heroku
-	    if(System.getenv("CLEARDB_DATABASE_URL") != null){
-	    	URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+	    if(System.getenv("DATABASE_URL") != null){
+	    	URI dbUri = new URI(System.getenv("DATABASE_URL"));
 	    	String username = dbUri.getUserInfo().split(":")[0];
 	    	String password = dbUri.getUserInfo().split(":")[1];
-	    	String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+	    	String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
 
 	    	System.setProperty("dw.http.port", System.getenv("PORT"));
 	    	System.setProperty("dw.http.adminPort", System.getenv("PORT"));
