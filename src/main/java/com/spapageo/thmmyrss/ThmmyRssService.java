@@ -50,7 +50,7 @@ public class ThmmyRssService extends Service<ThmmyRssConfiguration> {
 	    	System.setProperty("dw.http.port", System.getenv("PORT"));
 	    	System.setProperty("dw.http.adminPort", System.getenv("PORT"));
 	    	
-	    	System.setProperty("dw.database.username", username);
+	    	System.setProperty("dw.database.user", username);
 	    	System.setProperty("dw.database.password", password);
 	    	System.setProperty("dw.database.url", dbUrl);
 	    	System.setProperty("dw.standalone","false");
