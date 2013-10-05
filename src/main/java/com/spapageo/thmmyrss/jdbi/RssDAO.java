@@ -27,7 +27,7 @@ public interface RssDAO {
 	@SqlUpdate("insert into \"items\" (hash,title,date,description,lessonId) values (:hash,:title,:date,:description,:lessonId)")
 	int insertItem(@BindBean Item item);
 	
-	@SqlUpdate("create table \"items\" (hash varchar(64) primary key,title varchar(1024),date varchar(32),description varchar(max), lessonId int)")
+	@SqlUpdate("create table \"items\" (hash varchar(64) primary key,title varchar(1024),date varchar(32),description text, lessonId int)")
 	void createItemsTable();
 	
 	@SqlQuery("select hash,title,date,description,lessonId from \"items\" where lessonId = :lessonId limit 10")
