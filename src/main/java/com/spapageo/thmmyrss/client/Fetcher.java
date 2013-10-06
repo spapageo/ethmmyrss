@@ -3,6 +3,8 @@
  */
 package com.spapageo.thmmyrss.client;
 
+import java.sql.BatchUpdateException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -16,6 +18,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.skife.jdbi.v2.exceptions.DBIException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -167,7 +170,11 @@ public class Fetcher implements Runnable{
 							rssDAO.insertItems(announc);
 						}
 					}catch(Exception e){
-						LOGGER.error("Lesson login or database insertion failed.", e);
+						if (e instanceof BatchUpdateException){
+							logException(((BatchUpdateException) e).getNextException());
+						}else if(e instanceof DBIException){
+							logException((DBIException) e);
+						}
 					}
 					Thread.sleep(1000);
 				}
@@ -178,4 +185,24 @@ public class Fetcher implements Runnable{
 		}
 		LOGGER.info("Done");
 	}
+	
+    protected void logException(DBIException exception) {
+        final Throwable cause = exception.getCause();
+        if (cause instanceof SQLException) {
+            for (Throwable throwable : (SQLException)cause) {
+                LOGGER.error(throwable.getMessage(), throwable);
+            }
+        } else {
+            LOGGER.error(cause.getMessage(), exception);
+        }
+    }
+    
+    protected void logException(SQLException exception) {
+        final String message = exception.getMessage();
+        for (Throwable throwable : exception) {
+            LOGGER.error(message, throwable);
+        }
+    }
+    
+    
 }

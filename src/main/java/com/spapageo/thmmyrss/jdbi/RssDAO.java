@@ -21,11 +21,11 @@ import com.spapageo.thmmyrss.api.Item;
 @RegisterMapper(ItemMapper.class)
 public interface RssDAO {
 	
-	@SqlBatch("merge into \"items\" (hash,title,date,description,lessonId) values (:hash,:title,:date,:description,:lessonId)")
-	int[] insertItems(@BindBean List<Item> items);
+	@SqlBatch("insert into \"items\" (hash,title,date,description,lessonId) select :hash,:title,:date,:description,:lessonId where not exists (select hash from \"items\" where hash = :hash)")
+	void insertItems(@BindBean List<Item> items);
 
 	@SqlUpdate("insert into \"items\" (hash,title,date,description,lessonId) values (:hash,:title,:date,:description,:lessonId)")
-	int insertItem(@BindBean Item item);
+	void insertItem(@BindBean Item item);
 	
 	@SqlUpdate("create table \"items\" (hash varchar(64) primary key,title varchar(1024),date varchar(32),description text, lessonId int)")
 	void createItemsTable();
