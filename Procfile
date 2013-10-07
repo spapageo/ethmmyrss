@@ -1,1 +1,1 @@
-web: java -jar target/thmmyrss-*.jar server thmmyrss.yml
+web: java -jar target/ethmmyrss-*.jar server thmmyrss.yml
