@@ -14,6 +14,10 @@ import javax.xml.bind.Marshaller;
 
 import org.junit.Test;
 
+import com.spapageo.ethmmyrss.api.Channel;
+import com.spapageo.ethmmyrss.api.Item;
+import com.spapageo.ethmmyrss.api.Rss;
+
 public class FeedTest {
 
 	@Test

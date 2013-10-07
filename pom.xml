@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.spapageo</groupId>
-	<artifactId>thmmyrss</artifactId>
+	<artifactId>ethmmyrss</artifactId>
 	<version>0.1</version>
 	<packaging>jar</packaging>
 
-	<name>thmmyrss</name>
+	<name>ethmmyrss</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -58,7 +58,7 @@
 									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>com.spapageo.thmmyrss.ThmmyRssService</mainClass>
+									<mainClass>com.spapageo.ethmmyrss.ThmmyRssService</mainClass>
 								</transformer>
 							</transformers>
 						</configuration>

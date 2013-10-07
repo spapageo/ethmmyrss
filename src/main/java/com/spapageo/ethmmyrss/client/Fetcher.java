@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.spapageo.thmmyrss.client;
+package com.spapageo.ethmmyrss.client;
 
 import java.sql.BatchUpdateException;
 import java.sql.SQLException;
@@ -22,9 +22,9 @@ import org.skife.jdbi.v2.exceptions.DBIException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.spapageo.thmmyrss.ThmmyRssConfiguration;
-import com.spapageo.thmmyrss.api.Item;
-import com.spapageo.thmmyrss.jdbi.RssDAO;
+import com.spapageo.ethmmyrss.ThmmyRssConfiguration;
+import com.spapageo.ethmmyrss.api.Item;
+import com.spapageo.ethmmyrss.jdbi.RssDAO;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.representation.Form;

@@ -11,8 +11,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.skife.jdbi.v2.DBI;
 
-import com.spapageo.thmmyrss.ThmmyRssConfiguration;
-import com.spapageo.thmmyrss.jdbi.RssDAO;
+import com.spapageo.ethmmyrss.ThmmyRssConfiguration;
+import com.spapageo.ethmmyrss.client.Fetcher;
+import com.spapageo.ethmmyrss.jdbi.RssDAO;
 import com.yammer.dropwizard.client.JerseyClientBuilder;
 import com.yammer.dropwizard.config.ConfigurationFactory;
 import com.yammer.dropwizard.config.Environment;
