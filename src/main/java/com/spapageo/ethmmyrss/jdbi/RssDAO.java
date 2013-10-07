@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.spapageo.thmmyrss.jdbi;
+package com.spapageo.ethmmyrss.jdbi;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
-import com.spapageo.thmmyrss.api.Item;
+import com.spapageo.ethmmyrss.api.Item;
 
 /**
  * @author Doom

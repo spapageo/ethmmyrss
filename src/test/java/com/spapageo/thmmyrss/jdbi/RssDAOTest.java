@@ -12,7 +12,8 @@ import org.skife.jdbi.v2.DBI;
 import org.skife.jdbi.v2.Handle;
 import org.skife.jdbi.v2.util.StringMapper;
 
-import com.spapageo.thmmyrss.api.Item;
+import com.spapageo.ethmmyrss.api.Item;
+import com.spapageo.ethmmyrss.jdbi.RssDAO;
 
 public class RssDAOTest {
 
