@@ -5,6 +5,7 @@ package com.spapageo.ethmmyrss.client;
 
 import java.sql.BatchUpdateException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -125,7 +126,7 @@ public class Fetcher implements Runnable{
 		String title;
 		String date;
 		String announcement;
-
+		Timestamp tstamp;
 		for(Element e : el){
 
 			title = e.child(0).child(0).child(1).child(0).text();
@@ -133,8 +134,9 @@ public class Fetcher implements Runnable{
 			date = e.child(0).child(0).child(1).child(1).child(0).text();
 
 			DateTime dateTime = form.parseDateTime(date);
-			date = rssform.print(dateTime);
-
+			//date = rssform.print(dateTime);
+			tstamp = new Timestamp(dateTime.toDate().getTime());
+			
 			// Delete the date to get only the announcement body
 			e.child(0).child(0).child(1).child(1).child(0).remove();
 			//e.child(0).child(0).child(1).child(1).child(2).remove();
@@ -145,7 +147,7 @@ public class Fetcher implements Runnable{
 			}
 			announcement = e.child(0).child(0).child(1).child(1).html();
 
-			ret.add(new Item(title, date, announcement,lessonId));
+			ret.add(new Item(title, tstamp, announcement,lessonId));
 		}
 		LOGGER.info("Successfully got " + el.size() + " announcements from lesson: " + lessonId);
 

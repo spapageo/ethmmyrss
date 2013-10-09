@@ -6,6 +6,9 @@ import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +33,7 @@ public class FeedTest {
 		mars.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 		StringWriter sw = new StringWriter();
 		List<Item> l = new ArrayList<>();
-		l.add(new Item("title","pubDate","description",1));
+		l.add(new Item("title",new Timestamp(0),"description",1));
 		mars.marshal(new Rss(new Channel("description","http://alexander.ee.auth.gr:8083/eTHMMY/","title",l)), sw);
 		assertTrue(target.equals(sw.toString()));
 	}

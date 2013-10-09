@@ -3,12 +3,15 @@
  */
 package com.spapageo.ethmmyrss.api;
 
+import java.sql.Timestamp;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -28,7 +31,7 @@ public class Item {
 	private String title;
 	@NotEmpty
 	@NotNull
-	private String date;
+	private Timestamp date;
 	@NotEmpty
 	@NotNull
 	private String description;
@@ -42,17 +45,17 @@ public class Item {
 	
 	public Item(){}
 	
-	public Item(String title,String date,String description,int lessonId){
+	public Item(String title,Timestamp date,String description,int lessonId){
 		this.title = title;
 		this.date = date;
 		this.description = description;
 		this.lessonId = lessonId;
 		this.hash = Hashing.sha256().newHasher().putString(title)
-									.putString(date).putString(description).putInt(lessonId)
+									.putString(date.toString()).putString(description).putInt(lessonId)
 									.hash().toString();
 	}
 	
-	public Item(String title,String date,String description,int lessonId,String hash){
+	public Item(String title,Timestamp date,String description,int lessonId,String hash){
 		this.title = title;
 		this.date = date;
 		this.description = description;
@@ -64,7 +67,8 @@ public class Item {
 		return title;
 	}
 	@XmlElement(name = "pubDate")
-	public String getDate() {
+	@XmlJavaTypeAdapter(TimestampAdapter.class)
+	public Timestamp getDate() {
 		return date;
 	}
 	@XmlElement
@@ -84,7 +88,7 @@ public class Item {
 		this.title = title;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 
