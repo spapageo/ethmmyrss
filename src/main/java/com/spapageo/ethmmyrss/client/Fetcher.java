@@ -42,7 +42,6 @@ public class Fetcher implements Runnable{
 
 	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 	private final DateTimeFormatter form = DateTimeFormat.forPattern("dd MMM yyyy hh:mm aa").withLocale(new Locale("EL"));
-	private final DateTimeFormatter rssform = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss Z");
 
 	public Fetcher(Client client,ThmmyRssConfiguration config,RssDAO rssDAO) {
 		this.client = client;
@@ -139,7 +138,6 @@ public class Fetcher implements Runnable{
 			
 			// Delete the date to get only the announcement body
 			e.child(0).child(0).child(1).child(1).child(0).remove();
-			//e.child(0).child(0).child(1).child(1).child(2).remove();
 
 			Element ann = e.child(0).child(0).child(1).child(1);
 			for(Element elem : ann.select("[href]")){

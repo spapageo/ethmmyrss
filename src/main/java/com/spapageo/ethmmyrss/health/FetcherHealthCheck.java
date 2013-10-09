@@ -29,12 +29,12 @@ public class FetcherHealthCheck  extends HealthCheck{
 		if(!f.lessonLogin(config.getFetcher().getEthmmy_url(), 36, jssesionid)){
 			return Result.unhealthy("Site login failed");
 		}else{
-			if(f.lessonAnnouncements(config.getFetcher().getEthmmy_url(), 36, jssesionid).isEmpty()){
-				return Result.unhealthy("Got zero announcements");
-			}else{
-				return Result.healthy("All is good");
+			if(!config.getFetcher().getUsername().equals("guest")){
+				if(f.lessonAnnouncements(config.getFetcher().getEthmmy_url(), 36, jssesionid).isEmpty()){
+					return Result.unhealthy("Got zero announcements");
+				}
 			}
-			
+			return Result.healthy("All is good");
 		}
 	}
 

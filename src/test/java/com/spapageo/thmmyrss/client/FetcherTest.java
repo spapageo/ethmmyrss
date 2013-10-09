@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +28,7 @@ public class FetcherTest {
 	
 	@Before
 	public void setup() throws Exception{
+		System.setProperty("dw.database.url", "postgresql://test");
 		String configFile = getClass().getResource("/thmmyrss.yml").getFile();
 		config = ConfigurationFactory.forClass(ThmmyRssConfiguration.class, new Validator()).build(new File(configFile));
 		RssDAO dao = new DBI("jdbc:h2:mem:test;MVCC=TRUE").onDemand(RssDAO.class);
@@ -61,6 +63,11 @@ public class FetcherTest {
 				}else{
 					assertFalse(f.lessonAnnouncements(config.getFetcher().getEthmmy_url(), 36, jsession).isEmpty());
 				}
+	}
+	
+	@After
+	public void cleanup(){
+		System.clearProperty("dw.database.url");
 	}
 
 }
