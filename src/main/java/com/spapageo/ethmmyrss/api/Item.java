@@ -22,7 +22,7 @@ import com.google.common.hash.Hashing;
 @XmlType(propOrder={"title", "link","date","description"})
 public class Item {
 	@XmlElement
-	public static String link = "http://alexander.ee.auth.gr:8083/eTHMMY/";
+	public String link;
 	@NotEmpty
 	@NotNull
 	private String title;
@@ -43,6 +43,7 @@ public class Item {
 	public Item(){}
 	
 	public Item(String title,String date,String description,int lessonId){
+		this.link = "http://alexander.ee.auth.gr:8083/eTHMMY/cms.announcement.data.do?method=jsplist&PRMID=" + lessonId;
 		this.title = title;
 		this.date = date;
 		this.description = description;
@@ -53,6 +54,7 @@ public class Item {
 	}
 	
 	public Item(String title,String date,String description,int lessonId,String hash){
+		this.link = "http://alexander.ee.auth.gr:8083/eTHMMY/cms.announcement.data.do?method=jsplist&PRMID=" + lessonId;
 		this.title = title;
 		this.date = date;
 		this.description = description;
