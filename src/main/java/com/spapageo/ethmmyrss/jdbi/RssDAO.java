@@ -41,4 +41,7 @@ public interface RssDAO {
 	
 	@SqlUpdate("delete from \"items\" where hash not in (select hash from items where lessonId = :lessonId limit :x)")
 	void deleteAllbutFirstXForId(@Bind("lessonId") int lessonId,@Bind("x") int x);
+	
+	@SqlUpdate("drop table \"items\"")
+	void droptable();
 }

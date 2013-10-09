@@ -74,6 +74,7 @@ public class ThmmyRssService extends Service<ThmmyRssConfiguration> {
 	    jdbi = factory.build(env, config.getDatabase(), "mysql");
 	    dao = jdbi.onDemand(RssDAO.class);
 	    try{
+	    	dao.droptable();
 	    	dao.createItemsTable();
 	    }catch(Exception e){
 	    	LoggerFactory.getLogger(getClass()).warn("Table probably already exists. Trying to continue",e);
