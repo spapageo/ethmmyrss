@@ -24,8 +24,9 @@ import com.google.common.hash.Hashing;
 @XmlRootElement
 @XmlType(propOrder={"title", "link","date","description"})
 public class Item {
-	@XmlElement
-	public static String link = "http://alexander.ee.auth.gr:8083/eTHMMY/";
+	@NotEmpty
+	@NotNull
+	private String link;
 	@NotEmpty
 	@NotNull
 	private String title;
@@ -50,6 +51,7 @@ public class Item {
 		this.date = date;
 		this.description = description;
 		this.lessonId = lessonId;
+		this.link = "http://alexander.ee.auth.gr:8083/eTHMMY/cms.course.login.do?method=execute&PRMID=" + lessonId;
 		this.hash = Hashing.sha256().newHasher().putString(title)
 									.putString(date.toString()).putString(description).putInt(lessonId)
 									.hash().toString();
@@ -61,6 +63,7 @@ public class Item {
 		this.description = description;
 		this.lessonId = lessonId;
 		this.hash = hash;
+		this.link = "http://alexander.ee.auth.gr:8083/eTHMMY/cms.course.login.do?method=execute&PRMID=" + lessonId;
 	}
 	@XmlElement
 	public String getTitle() {
@@ -82,6 +85,14 @@ public class Item {
 	@XmlTransient
 	public int getLessonId() {
 		return lessonId;
+	}
+	@XmlElement
+	public String getLink(){
+		return link;
+	}
+	
+	public void setLink(String link){
+		this.link = link;
 	}
 	
 	public void setTitle(String title) {

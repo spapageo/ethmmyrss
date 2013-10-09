@@ -62,6 +62,7 @@ public class ThmmyRssService extends Service<ThmmyRssConfiguration> {
 	public void initialize(Bootstrap<ThmmyRssConfiguration> bootstrap) {
 		bootstrap.setName("Thmmy Rss");
 		bootstrap.addCommand(new UpdateDbCommand(this, "updatedb", "Update the rss database."));
+		bootstrap.addCommand(new RecreateTableCommand(this, "recreatetable", "Recreate the database table."));
 		bootstrap.addBundle(new DBIExceptionsBundle());
 		bootstrap.addBundle(new AssetsBundle("/assets/", "/"));
 	}
@@ -77,7 +78,7 @@ public class ThmmyRssService extends Service<ThmmyRssConfiguration> {
 	    	//dao.droptable();
 	    	dao.createItemsTable();
 	    }catch(Exception e){
-	    	LoggerFactory.getLogger(getClass()).warn("Table probably already exists. Trying to continue",e);
+	    	LoggerFactory.getLogger(getClass()).warn("Table probably already exists. Trying to continue");
 	    }
 	    this.fetcher = new Fetcher(client,config,dao);
 	    if(config.getStandalone()){
