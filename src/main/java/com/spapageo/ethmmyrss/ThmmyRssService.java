@@ -40,21 +40,32 @@ public class ThmmyRssService extends Service<ThmmyRssConfiguration> {
 	 */
 	public static void main(String[] args) throws Exception{
 	    
-		//check if we are running on heroku
+		//overwrite config with environment variables
 	    if(System.getenv("DATABASE_URL") != null){
 	    	URI dbUri = new URI(System.getenv("DATABASE_URL"));
 	    	String username = dbUri.getUserInfo().split(":")[0];
 	    	String password = dbUri.getUserInfo().split(":")[1];
 	    	String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
-
-	    	System.setProperty("dw.http.port", System.getenv("PORT"));
-	    	System.setProperty("dw.http.adminPort", System.getenv("PORT"));
 	    	
 	    	System.setProperty("dw.database.user", username);
 	    	System.setProperty("dw.database.password", password);
 	    	System.setProperty("dw.database.url", dbUrl);
 	    	System.setProperty("dw.standalone","false");
 	    }
+	    
+	    if(System.getenv("PORT") != null){
+	    	System.setProperty("dw.http.port", System.getenv("PORT"));
+	    	System.setProperty("dw.http.adminPort", System.getenv("PORT"));
+	    }
+	    
+	    if(System.getenv("USERNAME") != null){
+	    	System.setProperty("dw.fetcher.username", System.getenv("USERNAME"));
+	    }
+	    
+	    if(System.getenv("PASSWORD") != null){
+	    	System.setProperty("dw.fetcher.password", System.getenv("PASSWORD"));
+	    }
+	    
 		new ThmmyRssService().run(args);
 	}
 
