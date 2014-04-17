@@ -38,7 +38,6 @@ public class FeedResource {
 
     @GET
     @Timed
-    @CacheControl(maxAge = 30,maxAgeUnit = TimeUnit.MINUTES)
     public Rss sayHello(@PathParam("id") int id) {
     	if(!config.getLesson_ids().containsKey(id)){
     		throw new WebApplicationException(404);
