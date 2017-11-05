@@ -10,8 +10,9 @@ http:
 database:
   driverClass: org.h2.Driver
   #must be a postgresql databse url
-  url: null
-  user: spyros
+  url: jdbc:h2:mem:ethmmyrss
+  user: sa
+  password: sa
 
 httpClient:
   gzipEnabledForRequests: false
