@@ -172,7 +172,7 @@ public class Fetcher implements Runnable {
                         }
                         rssDAO.insertItems(announc);
                     }
-                    Thread.sleep(1000);
+                    Thread.sleep(500);
                 } catch (Exception e) {
                     LOGGER.error("Error while processing lessond " + id, e);
                 }
