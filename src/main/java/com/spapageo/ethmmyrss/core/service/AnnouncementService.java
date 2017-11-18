@@ -1,4 +1,4 @@
-package com.spapageo.ethmmyrss.api.service;
+package com.spapageo.ethmmyrss.core.service;
 
 import com.spapageo.ethmmyrss.api.domain.Announcement;
 

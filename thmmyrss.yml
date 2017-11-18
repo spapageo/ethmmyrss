@@ -3,7 +3,7 @@ server:
     - type: http
       port: 8080
   adminConnectors: []
-  rootPath: /service/*
+  rootPath: /*
 
 database:
   driverClass: org.postgresql.Driver

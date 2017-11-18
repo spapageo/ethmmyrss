@@ -5,13 +5,13 @@ import com.spapageo.ethmmyrss.ThmmyRssConfiguration;
 import com.spapageo.ethmmyrss.api.domain.Announcement;
 import com.spapageo.ethmmyrss.api.domain.Channel;
 import com.spapageo.ethmmyrss.api.domain.Rss;
-import com.spapageo.ethmmyrss.api.service.AnnouncementService;
+import com.spapageo.ethmmyrss.core.service.AnnouncementService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/feed/{id}")
+@Path("/service/feed/{id}")
 @Produces(MediaType.APPLICATION_XML)
 public class FeedResource {
     private AnnouncementService announcementService;

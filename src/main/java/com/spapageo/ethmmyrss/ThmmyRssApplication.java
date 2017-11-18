@@ -1,13 +1,14 @@
 package com.spapageo.ethmmyrss;
 
-import com.spapageo.ethmmyrss.api.service.AnnouncementService;
-import com.spapageo.ethmmyrss.api.service.AnnouncementServiceImpl;
+import com.spapageo.ethmmyrss.core.service.AnnouncementService;
+import com.spapageo.ethmmyrss.core.service.AnnouncementServiceImpl;
 import com.spapageo.ethmmyrss.client.AnnouncementFetcher;
-import com.spapageo.ethmmyrss.command.RecreateTableCommand;
-import com.spapageo.ethmmyrss.command.UpdateAnnouncementsCommand;
+import com.spapageo.ethmmyrss.cli.RecreateTableCommand;
+import com.spapageo.ethmmyrss.cli.UpdateAnnouncementsCommand;
 import com.spapageo.ethmmyrss.health.AnnouncementFetcherHealthCheck;
 import com.spapageo.ethmmyrss.jdbi.AnnouncementDAO;
 import com.spapageo.ethmmyrss.resourses.FeedResource;
+import com.spapageo.ethmmyrss.resourses.IndexResource;
 import io.dropwizard.Application;
 import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.client.JerseyClientBuilder;
@@ -15,6 +16,7 @@ import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.jdbi.bundles.DBIExceptionsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.dropwizard.views.ViewBundle;
 import org.skife.jdbi.v2.DBI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +65,8 @@ public class ThmmyRssApplication extends Application<ThmmyRssConfiguration> {
         bootstrap.addCommand(new RecreateTableCommand(this, "recreatetable", "Recreate the database table."));
         bootstrap.addCommand(new UpdateAnnouncementsCommand(this, "updatedb", "Update the announcement database"));
         bootstrap.addBundle(new DBIExceptionsBundle());
-        bootstrap.addBundle(new AssetsBundle("/assets/", "/"));
+        bootstrap.addBundle(new AssetsBundle("/assets/", "/assets"));
+        bootstrap.addBundle(new ViewBundle<>());
     }
 
     @Override
@@ -80,6 +83,7 @@ public class ThmmyRssApplication extends Application<ThmmyRssConfiguration> {
         env.healthChecks().register("announcement-fetcher-health", new AnnouncementFetcherHealthCheck(configuration, announcementFetcher));
         this.announcementService = new AnnouncementServiceImpl(announcementDAO, announcementFetcher, configuration);
         env.jersey().register(new FeedResource(announcementService, configuration));
+        env.jersey().register(new IndexResource(configuration));
     }
 
     private void tryCreateAnnouncementTable() {

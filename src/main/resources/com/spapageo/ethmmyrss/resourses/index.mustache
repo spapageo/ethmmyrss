@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>eTHMMY Rss</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="assets/css/custom.css" rel="stylesheet" media="screen">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="page-header clearfix">
+            <div class="col-md-offset-2 col-md-10">
+                <h1>eTHMMY RSS <small>Rss Feeds για την ιστοσελίδα του <a href="http:\\alexander.ee.auth.gr:8083\eTHMMY\" target="_blank">eTHMMY</a></small></h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="general-text jumbotron">
+                <p>Έφτιαξα αυτή τη σελίδα κυρίως για άτομα που χρησιμοποιούν rss readers/aggregators και θέλουν ευκολότερη ενημέρωση για το πότε δημοσιεύονται νέες ανακοινώσεις στο eTHMMY. Οι ανακοινώσεις
+                    ανανεώνονται προς το παρών 3 φορές την ημέρα.</p>
+                <p>Θα προσπαθήσω να διατηρώ την εφαρμογή σε σωστή λειτουργία. Για να με ενημερώσετε αν δεν εμφανίζονται σωστά οι ανακοινώσεις ή αν λείπει κάποιο μάθημα μπορείτε να μου στείλετε mail <a href="mailto:spyros_papageorgiou@hotmail.com" target="_blank">εδω</a><p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <ul class="list-group">
+                {{#lessonInfos}}
+                <li class="list-group-item"><a href="/service/feed/{{lessonId}}" target="_blank"><span class="glyphicon glyphicon-bookmark"></span>    {{lessonName}} </a></li>
+                {{/lessonInfos}}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="page-footer">
+            <small class="col-md-offset-2 col-md-4">Ο κώδικας της εφαρμογής βρίσκεται στο <a href="https://github.com/spapageo/ethmmyrss" target="_blank">github.</a> Δεκτές όλες οι συνεισφορές.</small>
+            <small class="col-md-4">Δεν σχετίζομαι με το Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης με κανένα τρόπο.</small>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
