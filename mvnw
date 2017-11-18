@@ -36,11 +36,11 @@
 
 if [ -z "$MAVEN_SKIP_RC" ] ; then
 
-  if [ -announcementFetcher /etc/mavenrc ] ; then
+  if [ -f /etc/mavenrc ] ; then
     . /etc/mavenrc
   fi
 
-  if [ -announcementFetcher "$HOME/.mavenrc" ] ; then
+  if [ -f "$HOME/.mavenrc" ] ; then
     . "$HOME/.mavenrc"
   fi
 
@@ -127,7 +127,7 @@ if [ -z "$JAVA_HOME" ]; then
         javaHome="`dirname \"$javaExecutable\"`"
         javaExecutable="`cd \"$javaHome\" && pwd -P`/javac"
       else
-        javaExecutable="`readlink -announcementFetcher \"$javaExecutable\"`"
+        javaExecutable="`readlink -f \"$javaExecutable\"`"
       fi
       javaHome="`dirname \"$javaExecutable\"`"
       javaHome=`expr "$javaHome" : '\(.*\)/bin'`
@@ -190,7 +190,7 @@ find_maven_basedir() {
 
 # concatenates all lines of a file
 concat_lines() {
-  if [ -announcementFetcher "$1" ]; then
+  if [ -f "$1" ]; then
     echo "$(tr -s '\n' ' ' < "$1")"
   fi
 }
