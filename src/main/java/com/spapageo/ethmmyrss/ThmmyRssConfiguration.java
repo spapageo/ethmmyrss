@@ -1,23 +1,21 @@
 package com.spapageo.ethmmyrss;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.yammer.dropwizard.client.JerseyClientConfiguration;
-import com.yammer.dropwizard.config.Configuration;
-import com.yammer.dropwizard.db.DatabaseConfiguration;
+import io.dropwizard.Configuration;
+import io.dropwizard.client.JerseyClientConfiguration;
+import io.dropwizard.db.DataSourceFactory;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Map;
 
 public class ThmmyRssConfiguration extends Configuration {
-    @JsonProperty
-    private boolean standalone = true;
-
     @Valid
     @NotNull
     @JsonProperty
-    private DatabaseConfiguration database = new DatabaseConfiguration();
+    private DataSourceFactory database = new DataSourceFactory();
 
     @Valid
     @NotNull
@@ -26,30 +24,26 @@ public class ThmmyRssConfiguration extends Configuration {
 
     @Valid
     @NotNull
-    @JsonProperty
+    @JsonProperty(value = "fetcher")
     private FetcherConfiguration fetcher = new FetcherConfiguration();
 
     @NotNull
     @Size(min = 1)
-    private HashMap<Integer, String> lesson_ids;
+    private Map<Integer, String> lessonIds = Collections.emptyMap();
 
     public FetcherConfiguration getFetcher() {
         return fetcher;
     }
 
-    public HashMap<Integer, String> getLesson_ids() {
-        return lesson_ids;
+    public Map<Integer, String> getLessonIds() {
+        return lessonIds;
     }
 
     public JerseyClientConfiguration getJerseyClientConfiguration() {
         return httpClient;
     }
 
-    public DatabaseConfiguration getDatabase() {
+    public DataSourceFactory getDatabase() {
         return database;
-    }
-
-    public boolean getStandalone() {
-        return standalone;
     }
 }

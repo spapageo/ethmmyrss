@@ -1,8 +1,7 @@
 /**
  *
  */
-package com.spapageo.ethmmyrss.api;
-
+package com.spapageo.ethmmyrss.api.domain;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;

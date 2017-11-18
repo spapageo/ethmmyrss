@@ -1,0 +1,23 @@
+package com.spapageo.ethmmyrss.command;
+
+import com.spapageo.ethmmyrss.ThmmyRssApplication;
+import com.spapageo.ethmmyrss.ThmmyRssConfiguration;
+import io.dropwizard.cli.EnvironmentCommand;
+import io.dropwizard.setup.Environment;
+import net.sourceforge.argparse4j.inf.Namespace;
+
+public class UpdateAnnouncementsCommand extends EnvironmentCommand<ThmmyRssConfiguration> {
+    private ThmmyRssApplication application;
+
+    public UpdateAnnouncementsCommand(ThmmyRssApplication application,
+                                      String name, String description) {
+        super(application, name, description);
+        this.application = application;
+    }
+
+    @Override
+    protected void run(Environment env, Namespace namespace,
+                       ThmmyRssConfiguration config) throws Exception {
+        application.getAnnouncementService().updateAnnouncementsForAllLessons();
+    }
+}

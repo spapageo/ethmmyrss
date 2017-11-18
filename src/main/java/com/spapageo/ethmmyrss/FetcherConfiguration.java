@@ -3,36 +3,30 @@ package com.spapageo.ethmmyrss;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
-
 public class FetcherConfiguration {
 
-    @NotNull
     @NotBlank
     @JsonProperty
-    private String ethmmy_url;
+    private String ethmmyUrl;
 
-    @NotNull
     @NotBlank
     @JsonProperty
-    private String ethhmy_login;
+    private String ethmmyLogin;
 
-    @NotNull
     @NotBlank
     @JsonProperty
     private String username;
 
-    @NotNull
     @NotBlank
     @JsonProperty
     private String password;
 
-    public String getEthmmy_url() {
-        return ethmmy_url;
+    public String getEthmmyUrl() {
+        return ethmmyUrl;
     }
 
-    public String getEthhmy_login() {
-        return ethhmy_login;
+    public String getEthmmyLogin() {
+        return ethmmyLogin;
     }
 
     public String getUsername() {

@@ -1,15 +1,12 @@
-standalone: false
-
-http:
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors: []
   rootPath: /service/*
-  port: 8080
-  adminPort: 8080
-  adminUsername: null
-  adminPassword: null
 
 database:
   driverClass: org.h2.Driver
-  #must be a postgresql databse url
   url: jdbc:h2:mem:ethmmyrss
   user: sa
   password: sa
@@ -21,12 +18,12 @@ httpClient:
   connectionTimeout: 10s
  
 fetcher:
-  ethmmy_url: http://alexander.ee.auth.gr:8083/eTHMMY/
-  ethhmy_login: http://alexander.ee.auth.gr:8083/eTHMMY/loginAction.do
+  ethmmyUrl: http://alexander.ee.auth.gr:8083/eTHMMY/
+  ethmmyLogin: http://alexander.ee.auth.gr:8083/eTHMMY/loginAction.do
   username: guest
   password: guest
 
-lesson_ids:
+lessonIds:
   36 : Τεχνολογία Λογισμικού 
   38 : Βάσεις Δεδομένων 
   50 : Συστήματα Ηλεκτρικής Ενέργειας I 

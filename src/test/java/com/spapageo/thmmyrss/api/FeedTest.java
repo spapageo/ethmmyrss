@@ -1,8 +1,8 @@
 package com.spapageo.thmmyrss.api;
 
-import com.spapageo.ethmmyrss.api.Channel;
-import com.spapageo.ethmmyrss.api.Item;
-import com.spapageo.ethmmyrss.api.Rss;
+import com.spapageo.ethmmyrss.api.domain.Announcement;
+import com.spapageo.ethmmyrss.api.domain.Channel;
+import com.spapageo.ethmmyrss.api.domain.Rss;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +24,7 @@ public class FeedTest {
 
     @Before
     public void setUp() throws Exception {
-        JAXBContext con = JAXBContext.newInstance(Rss.class);
+        JAXBContext con = JAXBContext.newInstance(Rss.class, Channel.class, Announcement.class);
         marshaller = con.createMarshaller();
         marshaller.setProperty("jaxb.formatted.output", false);
         marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
@@ -36,8 +36,10 @@ public class FeedTest {
                 Charset.forName("UTF-8"));
 
         StringWriter sw = new StringWriter();
-        List<Item> items = Collections.singletonList(new Item("title", new Timestamp(0), "description", 1));
-        marshaller.marshal(new Rss(new Channel("description", "http://alexander.ee.auth.gr:8083/eTHMMY/", "title", items)), sw);
+        List<Announcement> announcements = Collections.singletonList(new Announcement("title", new Timestamp(0), "description", 1));
+        Rss rss = new Rss(
+                new Channel("description", "http://alexander.ee.auth.gr:8083/eTHMMY/", "title", announcements));
+        marshaller.marshal(rss, sw);
         assertEquals(target, sw.toString());
     }
 
