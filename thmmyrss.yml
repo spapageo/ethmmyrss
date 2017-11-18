@@ -163,3 +163,8 @@ lessonIds:
   204 : Θεωρία Σημάτων και Συστημάτων 
   205 : Ψηφιακή Επεξεργασία Σήματος 
   
+metrics:
+  frequency: 10 minute
+  reporters:
+    - type: log
+      logger: metrics
