@@ -44,8 +44,7 @@ public class ThmmyRssApplication extends Application<ThmmyRssConfiguration> {
         }
 
         if (System.getenv("PORT") != null) {
-            System.setProperty("dw.http.port", System.getenv("PORT"));
-            System.setProperty("dw.http.adminPort", System.getenv("PORT"));
+            System.setProperty("dw.server.applicationConnectors[0].port", System.getenv("PORT"));
         }
 
         if (System.getenv("USERNAME") != null) {
