@@ -7,7 +7,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 @Path("/")
-@Produces(MediaType.TEXT_HTML)
+@Produces(MediaType.TEXT_HTML + "; charset=UTF-8")
 public class IndexResource {
     private ThmmyRssConfiguration config;
 
